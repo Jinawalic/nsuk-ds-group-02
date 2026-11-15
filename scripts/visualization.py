@@ -1,0 +1,36 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df=pd.read_csv("data/raw/nasarawa_yam_survey_synthetic.csv")
+df['lga_clean']=df['lga'].str.strip().str.lower()
+df['staking_clean']=df['staking'].str.strip().str.lower().replace({'yes':1,'no':0})
+plt.figure()
+plt.hist(df['yield_t_per_ha'])
+plt.title("Distribution of Yam Yield (t/ha)")
+plt.xlabel("Yield (t/ha)")
+plt.ylabel("number of farms")
+plt.savefig("data/processed/yam_yield_distribution.png")
+plt.close()
+plt.figure()
+df.groupby('staking_clean')['yield_t_per_ha'].mean().plot(kind='bar')
+plt.title("average Yam Yield by Staking")
+plt.ylabel("Yield (t/ha)")
+plt.savefig("data/processed/yam_yield_by_staking.png")
+plt.close()
+plt.figure()
+df.groupby('lga_clean')['yield_t_per_ha'].mean().sort_values().plot(kind='bar')
+plt.title("average Yam Yield by LGA")
+plt.ylabel("Yield (t/ha)")
+plt.savefig("data/processed/yam_yield_by_lga.png")
+plt.close()
+plt.figure()  
+plt.scatter(df['extension_visits'], df['yield_t_per_ha'])
+plt.title("Yam Yield vs Extension Visits")
+plt.xlabel("Extension Visits")
+plt.ylabel("Yield (t/ha)")
+plt.savefig("figures/extension_yield.png")
+plt.close()
+print("Done! 4 charts created")
+
+
+
+
