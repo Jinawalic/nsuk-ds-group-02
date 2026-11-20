@@ -9,7 +9,7 @@ cleaning code for LGAs, Yes/No and months; wrote report section 2; fixed the mer
 | # | Name | GitHub username | Role | What I did |
 |---|---|---|---|---|
 | 1 |Jinawa Titus Torhile| @Jinawalic | Coordinator + Data lead (Parts 1–2) | Setup Github Repo|
-| 2 |Maji Friday | @friday-mj |member+ Visualisation lead (Parts 3 and 7) |clone and update my name |
+| 2 |Maji Friday | @friday-mj |member+ Visualisation lead (Parts 3 and 7) |clone and update name |
 | 3 |Chidume Chinwe Augustina | @ChinweChidume86 | Statistics lead (Parts 4–5) | Committing my name|
 | 4 |Tudi James | @Tudi22| Machine-learning lead (Part 6) |Clone and added name to contributions |
 | 5 | | @ | App lead (Parts 8–9) | |
