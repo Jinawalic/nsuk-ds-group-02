@@ -30,9 +30,9 @@
     "access_to_credit"
   ],
   "test_metrics": {
-    "MAE": 1.4238596523305183,
-    "RMSE": 1.8300634851816908,
-    "R2": 0.5858051843352474
+    "MAE": 1.423859652330518,
+    "RMSE": 1.8300634851816904,
+    "R2": 0.5858051843352476
   },
   "n_training_rows": 1888,
   "numeric_ranges": {
@@ -164,8 +164,8 @@
       "Yes"
     ]
   },
-  "trained_at": "2026-11-21T23:18:31+00:00",
-  "python": "3.15.2",
+  "trained_at": "2026-11-21T23:44:41+00:00",
+  "python": "3.12.5",
   "scikit_learn": "1.9.1",
   "data_note": "Trained on SYNTHETIC teaching data. Do not use for real farm decisions.",
   "notes": "Chosen by 5-fold CV (Linear regression)"
