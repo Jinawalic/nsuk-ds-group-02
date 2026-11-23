@@ -36,17 +36,17 @@ st.set_page_config(page_title="Yam Yield Predictor", page_icon="🍠", layout="w
 # ============================================================================
 # TODO 1: Type your group name between the quotes, e.g. "Group 03"
 # ============================================================================
-GROUP_NAME = "Group ___"
+GROUP_NAME = "Group 02"
 
 # ============================================================================
 # TODO 2: Type the names of the five members of your group
 # ============================================================================
 TEAM = [
-    "Member 1 name (Data lead)",
-    "Member 2 name (Visualisation lead)",
-    "Member 3 name (Statistics lead)",
-    "Member 4 name (ML lead)",
-    "Member 5 name (App lead)",
+    "Jinawa Titus Torhile (Data lead)",
+    "Maji Friday (Visualisation lead)",
+    "Chidume Chinwe Augustina (Statistics lead)",
+    "Ezra Isaac (ML lead)",
+    "Tudi James (App lead)",
 ]
 
 
@@ -77,7 +77,7 @@ st.title(f"🍠 Yam Yield Predictor · {GROUP_NAME}")
 # TODO 3: Add a one-sentence description of the app under the title.
 # 💡 Hint: delete the # at the start of the next line and change the text if you like
 # ============================================================================
-# st.caption("Predicts the yam yield (tonnes per hectare) of a farm in Nasarawa State from its practices. Trained on SYNTHETIC data for teaching.")
+st.caption("Predicts the yam yield (tonnes per hectare) of a farm in Nasarawa State from its practices. Trained on SYNTHETIC data for teaching.")
 
 with st.sidebar:
     st.header("👥 Our team")
@@ -135,11 +135,11 @@ with tab_predict:
         # model.predict(...) returns a list with one number in it; [0] takes that number.
         # 💡 Hint: delete the # at the start of the next line
         # ====================================================================
-        # prediction = float(model.predict(farm)[0])
+        prediction = float(model.predict(farm)[0])
 
-        if prediction is None:
+    if prediction is None:
             st.info("👋 Complete **TODO 4** in `app/streamlit_app.py` to see the prediction.")
-        else:
+    else:
             average = float(data[TARGET].mean())
             c1, c2, c3 = st.columns(3)
 
@@ -147,14 +147,14 @@ with tab_predict:
             # TODO 5: Show the prediction as a big number with c1.metric(label, value, change)
             # 💡 Hint: c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
             # ================================================================
-
+            c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
 
             # ================================================================
             # TODO 6: Show the expected TOTAL harvest of this farm in tonnes.
             # Total harvest = predicted yield (t/ha) x farm size (ha) = prediction * inputs["farm_size_ha"]
             # 💡 Hint: c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
             # ================================================================
-
+            c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
 
             c3.metric("Typical error (test MAE)", f"± {card['test_metrics']['MAE']:.1f} t/ha")
 
@@ -175,7 +175,45 @@ with tab_predict:
 with tab_explore:
     st.subheader("How does yield differ between groups of farms?")
     group_col = None
+    if prediction is None:
+            st.info("👋 Complete **TODO 4** in `app/streamlit_app.py` to see the prediction.")
+    else:
+            average = float(data[TARGET].mean())
+            c1, c2, c3 = st.columns(3)
 
+            # ================================================================
+            # TODO 5: Show the prediction as a big number with c1.metric(label, value, change)
+            # 💡 Hint: c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
+            # ================================================================
+            c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
+
+            # ================================================================
+            # TODO 6: Show the expected TOTAL harvest of this farm in tonnes.
+            # Total harvest = predicted yield (t/ha) x farm size (ha) = prediction * inputs["farm_size_ha"]
+            # 💡 Hint: c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
+            # ================================================================
+            c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
+
+            c3.metric("Typical error (test MAE)", f"± {card['test_metrics']['MAE']:.1f} t/ha")
+
+            # "What if" chart (done for you): change ONE input, keep the others fixed
+            st.markdown("#### What if this farm used a different amount of fertiliser?")
+            low, _, high = card["numeric_ranges"]["fertilizer_kg_per_ha"]
+            grid = pd.DataFrame([inputs] * 40)
+            grid["fertilizer_kg_per_ha"] = np.linspace(low, high, 40)
+            grid["predicted_yield_t_per_ha"] = model.predict(grid)
+            st.line_chart(grid, x="fertilizer_kg_per_ha", y="predicted_yield_t_per_ha")
+            st.caption("All other inputs are held fixed. This shows what the model learned. "
+                       "It does not prove cause and effect.")
+
+
+# ============================================================================
+# TAB 2: Explore the clean data
+# ============================================================================
+with tab_explore:
+    st.subheader("How does yield differ between groups of farms?")
+    group_col = None
+    
     # ========================================================================
     # TODO 7: Let the user choose which column to compare, using a dropdown.
     # 💡 Hint: delete the # at the start of the next line
