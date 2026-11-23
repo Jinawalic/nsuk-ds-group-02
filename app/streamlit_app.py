@@ -9,9 +9,9 @@ is to complete TODO 1 to TODO 8 below. Each TODO has a 💡 hint, usually the ex
 line to type. The app runs even before you finish, and tells you which TODO is next.
 
 How to work:
-    1. Do ONE TODO, save the file (Ctrl + S).
-    2. In the browser, click "Rerun" (top-right) or press R. Check that it works.
-    3. Move on to the next TODO.
+1. Do ONE TODO, save the file (Ctrl + S).
+2. In the browser, click "Rerun" (top-right) or press R. Check that it works.
+3. Move on to the next TODO.
     If the page shows a red error, read the LAST line of the error, fix that line, save, rerun.
 
 Before the app can predict, the ML lead must run Part 6 of the notebook so that
@@ -80,7 +80,7 @@ st.title(f"🍠 Yam Yield Predictor · {GROUP_NAME}")
 st.caption("Predicts the yam yield (tonnes per hectare) of a farm in Nasarawa State from its practices. Trained on SYNTHETIC data for teaching.")
 
 with st.sidebar:
-    st.header("👥 Our team")
+    st.header("👥 Our Team")
     for member in TEAM:
         st.write("•", member)
     st.divider()
@@ -137,9 +137,9 @@ with tab_predict:
         # ====================================================================
         prediction = float(model.predict(farm)[0])
 
-    if prediction is None:
+        if prediction is None:
             st.info("👋 Complete **TODO 4** in `app/streamlit_app.py` to see the prediction.")
-    else:
+        else:
             average = float(data[TARGET].mean())
             c1, c2, c3 = st.columns(3)
 
@@ -175,50 +175,12 @@ with tab_predict:
 with tab_explore:
     st.subheader("How does yield differ between groups of farms?")
     group_col = None
-    if prediction is None:
-            st.info("👋 Complete **TODO 4** in `app/streamlit_app.py` to see the prediction.")
-    else:
-            average = float(data[TARGET].mean())
-            c1, c2, c3 = st.columns(3)
 
-            # ================================================================
-            # TODO 5: Show the prediction as a big number with c1.metric(label, value, change)
-            # 💡 Hint: c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
-            # ================================================================
-            c1.metric("Predicted yield", f"{prediction:.1f} t/ha", f"{prediction - average:+.1f} t/ha vs average")
-
-            # ================================================================
-            # TODO 6: Show the expected TOTAL harvest of this farm in tonnes.
-            # Total harvest = predicted yield (t/ha) x farm size (ha) = prediction * inputs["farm_size_ha"]
-            # 💡 Hint: c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
-            # ================================================================
-            c2.metric("Expected harvest for this farm", f"{prediction * inputs['farm_size_ha']:.1f} tonnes")
-
-            c3.metric("Typical error (test MAE)", f"± {card['test_metrics']['MAE']:.1f} t/ha")
-
-            # "What if" chart (done for you): change ONE input, keep the others fixed
-            st.markdown("#### What if this farm used a different amount of fertiliser?")
-            low, _, high = card["numeric_ranges"]["fertilizer_kg_per_ha"]
-            grid = pd.DataFrame([inputs] * 40)
-            grid["fertilizer_kg_per_ha"] = np.linspace(low, high, 40)
-            grid["predicted_yield_t_per_ha"] = model.predict(grid)
-            st.line_chart(grid, x="fertilizer_kg_per_ha", y="predicted_yield_t_per_ha")
-            st.caption("All other inputs are held fixed. This shows what the model learned. "
-                       "It does not prove cause and effect.")
-
-
-# ============================================================================
-# TAB 2: Explore the clean data
-# ============================================================================
-with tab_explore:
-    st.subheader("How does yield differ between groups of farms?")
-    group_col = None
-    
     # ========================================================================
     # TODO 7: Let the user choose which column to compare, using a dropdown.
     # 💡 Hint: delete the # at the start of the next line
     # ========================================================================
-    # group_col = st.selectbox("Compare average yield by", card["categorical_features"], format_func=nice)
+    group_col = st.selectbox("Compare average yield by", card["categorical_features"], format_func=nice)
 
     if group_col is None:
         st.info("👋 Complete **TODO 7** in `app/streamlit_app.py` to show the chart.")
@@ -247,20 +209,13 @@ with tab_about:
     #   c2.metric("MAE", f"{m['MAE']:.2f} t/ha")
     #   c3.metric("RMSE", f"{m['RMSE']:.2f} t/ha")
     # ========================================================================
+    c1.metric("R² (test set)", f"{m['R2']:.2f}")
+    c2.metric("MAE", f"{m['MAE']:.2f} t/ha")
+    c3.metric("RMSE", f"{m['RMSE']:.2f} t/ha")
 
-
-    st.write(f"**Model:** {card['model']} · **Trained on:** {card['n_training_rows']} farms · "
-             f"**Trained at:** {card['trained_at']} · scikit-learn {card['scikit_learn']}")
+    st.write(f"Model: · Trained on: farms · "
+             f"Trained at: · scikit-learn {card['scikit_learn']}")
     st.write("**Features used:**", ", ".join(card["numeric_features"] + card["categorical_features"]))
     st.warning(card["data_note"])
     with st.expander("Full model card (models/model_card.json)"):
         st.json(card)
-
-
-# ============================================================================
-# ⭐ STRETCH (optional): extend the app with AI
-# Ask your AI assistant, with this file open:
-#   "In this Streamlit app, add a fourth tab called 'LGA ranking' that shows a bar chart
-#    and a table of the mean yield per LGA from `data`, sorted from highest to lowest."
-# Read the code it suggests BEFORE pasting it in. Do you understand every line?
-# ============================================================================
