@@ -47,6 +47,7 @@ TEAM = [
     "Chidume Chinwe Augustina (Statistics lead)",
     "Ezra Isaac (ML lead)",
     "Tudi James (App lead)",
+    "Rebecca Nkiruka Umeh (Assist)",
 ]
 
 

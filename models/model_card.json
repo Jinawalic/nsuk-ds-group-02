@@ -164,7 +164,7 @@
       "Yes"
     ]
   },
-  "trained_at": "2026-11-23T20:29:02+00:00",
+  "trained_at": "2026-11-24T19:20:05+00:00",
   "python": "3.12.5",
   "scikit_learn": "1.9.1",
   "data_note": "Trained on SYNTHETIC teaching data. Do not use for real farm decisions.",

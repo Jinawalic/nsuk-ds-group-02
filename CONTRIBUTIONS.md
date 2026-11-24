@@ -13,6 +13,7 @@ cleaning code for LGAs, Yes/No and months; wrote report section 2; fixed the mer
 | 3 |Chidume Chinwe Augustina | @ChinweChidume86 | Statistics lead (Parts 4–5) | Committing my name|
 | 4 |Tudi James | @Tudi22| Machine-learning lead (Part 6) |Clone and added name to contributions |
 | 5 |Ezra Isaac | @exraisaac | App lead (Parts 8–9) |Clone repository and update Name |
+| 5 |Rebecca Nkiruka Umeh | @ | Assist |Clone repository and update Name |
 
 
 ## Meeting log *(optional, but helps if there are disagreements later)*
