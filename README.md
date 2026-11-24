@@ -3,9 +3,7 @@
 
 ---
 
-## 📌 About our project *(groups: complete this section in your own repository)*
-
-> Delete this grey note once you've filled the section in. Everything under **📘 Assignment instructions** can stay as it is.
+## 📌 About our project
 
 | | |
 |---|---|
@@ -15,17 +13,20 @@
 
 | Member | GitHub username | Role | Parts |
 |---|---|---|---|
-| | @ | Coordinator + Data lead | Parts 1–2 |
-| | @ | Visualisation lead | Parts 3 and 7 |
-| | @ | Statistics lead | Parts 4–5 |
-| | @ | Machine-learning lead | Part 6 |
-| | @ | App lead | Parts 8–9 |
+| Jinawa Titus Torhile | @Jinawalic | Coordinator + Data lead | Parts 1–2 |
+| Maji Friday | @friday-mj | Visualisation lead | Parts 3 and 7 |
+| Chidume Chinwe Augustina | @ChinweChidume86 | Statistics lead | Parts 4–5 |
+| Tudi James | @Tudi22 | Machine-learning lead | Part 6 |
+| Ezra Isaac | @exraisaac | App lead | Parts 8–9 |
 
 **Our key findings (3–5 bullet points with numbers):**
-- …
+- **Survey cleaning & yield distribution ($N = 2,360$ farms):** After removing 36 duplicate rows and 40 invalid/missing yield records from 2,436 raw entries across 13 Nasarawa State LGAs, clean farm yield averaged **$9.64\text{ t/ha}$** ($\text{SD} = 2.94\text{ t/ha}$, range $1.50$–$18.70\text{ t/ha}$).
+- **Vine staking increases yield by $+1.63\text{ t/ha}$:** Staked farms ($M = 10.46\text{ t/ha}$) significantly outperformed unstaked farms ($M = 8.83\text{ t/ha}$; 95% CI $[1.40, 1.85]$, Welch's $t = 13.99$, $p = 8.96 \times 10^{-43}$, Cohen's $d = 0.58$).
+- **Top drivers in multivariable OLS regression (adjusted $R^2 = 0.599$):** Certified seed yam ($+2.35\text{ t/ha}$), vine staking ($+1.57\text{ t/ha}$), loam soil ($+0.99\text{ t/ha}$), and organic manure ($+0.88\text{ t/ha}$) showed the strongest positive associations, whereas high pest/disease infestation reduced yield by **$-3.66\text{ t/ha}$** ($p < .001$).
+- **Input access explains the gender gap & cooperative credit:** Cooperative members were nearly three times as likely to access credit ($40.8\%$ vs. $14.6\%$, $\chi^2(1) = 205.63$, $p = 1.24 \times 10^{-46}$), and the unadjusted gender yield difference ($0.33\text{ t/ha}$, $p = .0138$) vanished after controlling for farm inputs ($b = +0.143\text{ t/ha}$, $p = .203$).
+- **Pre-harvest ML prediction ($R^2 = 0.586$, $\text{MAE} = 1.42\text{ t/ha}$):** Using 23 pre-harvest features (excluding post-harvest leaky columns), Linear Regression outperformed Random Forest and Gradient Boosting in 5-fold CV ($R^2 = 0.629$) and predicts unseen test-farm yields within **$\pm 1.42\text{ t/ha}$** ($\text{RMSE} = 1.83\text{ t/ha}$).
 
 **How to run our work:** see [Step 4](#step-4--everyone-set-up-python-on-your-laptop), then open `notebooks/group_project.ipynb` and click **Run All**, then `streamlit run app/streamlit_app.py`.
-
 ---
 
 # 📘 Assignment instructions
